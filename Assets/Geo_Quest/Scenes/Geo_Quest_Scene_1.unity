@@ -215,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 189791604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 0.94, z: 0}
+  m_LocalPosition: {x: -10.32, y: -3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -381,12 +381,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060103756}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5987235, y: 0.08409099, z: -10}
+  m_LocalScale: {x: 1.129667, y: 1.4015166, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1122114500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1122114497
 GameObject:
@@ -399,7 +399,6 @@ GameObject:
   - component: {fileID: 1122114500}
   - component: {fileID: 1122114499}
   - component: {fileID: 1122114498}
-  - component: {fileID: 1122114501}
   - component: {fileID: 1122114503}
   - component: {fileID: 1122114502}
   m_Layer: 0
@@ -421,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efd296cfb8fe2c4cbe4b8023e1a1fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 20
 --- !u!212 &1122114499
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -482,24 +482,13 @@ Transform:
   m_GameObject: {fileID: 1122114497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: -0.06, z: 0}
+  m_LocalPosition: {x: -0.68, y: -0.87, z: 0}
   m_LocalScale: {x: 0.88521665, y: 0.7135128, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1060103759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1122114501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122114497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efd296cfb8fe2c4cbe4b8023e1a1fc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1122114502
 Rigidbody2D:
   serializedVersion: 4
@@ -724,7 +713,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1060103759}
   - {fileID: 1122114500}
   - {fileID: 189791608}
   - {fileID: 1747679614}
