@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GenController : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody2D rb;
+
     public float speed = 5f;
+    public string nextLevel = "Geo_Quest_Scene_2";
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -15,11 +19,21 @@ public class GenController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Death")
+        switch (collision.tag)
         {
-            Debug.Log("HIT");
+            case "Death":
+                {
+                    string thisLevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisLevel);
+
+                    break;
+                }
+            case "Finish":
+                {
+                    SceneManager.LoadScene(nextLevel);
+                    break;
+                }
         }
-        Debug.Log(collision.tag);
     }
 
     // Update is called once per frame
