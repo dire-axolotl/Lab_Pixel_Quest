@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private SpriteRenderer spRBottom;
-    private SpriteRenderer spRTop;
-//sprite render top and bottom
+    private SpriteRenderer srU;
+    private SpriteRenderer srD;
+    //sprite render top and bottom
     private Rigidbody2D rb;
     public float speed = 5f;
 
@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = transform.Find("").GetComponent<SpriteRenderer>();
+        srU = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        srD = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -23,5 +24,12 @@ public class PlayerMovement : MonoBehaviour
         float xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(xInput * speed, rb.velocity.y);
 
+        if(xInput > 0){
+            srU.flipX = true;
+            srD.flipX = true;
+        } else if(xInput < 0){
+            srU.flipX = false;
+            srD.flipX = false;
+        }
     }
 }
