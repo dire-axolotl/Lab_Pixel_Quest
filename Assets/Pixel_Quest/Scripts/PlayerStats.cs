@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     
     public int coinCounter = 0;
     public string nextLevel = "";
+    public Transform respawnPosition;
     // Start is called before the first frame update
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,8 +18,14 @@ public class PlayerStats : MonoBehaviour
             case "Death":
                 {
                     health--;
-                    
-                    break;
+                    if (health <= 0)
+                    {
+                        string thisLevel = SceneManager.GetActiveScene().name;
+                        SceneManager.LoadScene(thisLevel);
+                    } else {
+                        transform.position = respawnPosition.position;
+                    }
+                        break;
                 }
             case "Finish":
                 {
@@ -33,11 +40,16 @@ public class PlayerStats : MonoBehaviour
                 }
             case "Health":
                 {
-                    if(health < maxHealth - 1)
+                    if(health < maxHealth)
                     {
                         health++;
                         Destroy(collision.gameObject);
                     }
+                    break;
+                }
+            case "Respawn":
+                {
+                    respawnPosition = collision.transform.Find("Point");
                     break;
                 }
         }
@@ -51,10 +63,6 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
-        {
-            string thisLevel = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(thisLevel);
-        }
+     
     }
 }
