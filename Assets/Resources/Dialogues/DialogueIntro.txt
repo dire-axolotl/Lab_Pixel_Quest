@@ -1,0 +1,21 @@
++this is line1
+~you now have an option
+|option1
+|option2
+|option3
+|option4
+/response1
+/response2
+/response3
+/response4
+(
++this is line1
+~you now have an option
+|option1
+|option2
+|option3
+|option4
+/response1
+/response2
+/response3
+/response4
