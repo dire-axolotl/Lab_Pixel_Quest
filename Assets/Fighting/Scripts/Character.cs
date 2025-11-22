@@ -7,13 +7,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private Object _character;
-    private Move[] _moveList;
-    private Sprite _characterSprite;
+    public Move[] _moveList;
+    public GameObject _characterSprite;
     // Start is called before the first frame update
-    public Character(Object character, Move[] moves, Sprite sprite)
+    public Character(Move[] moves, GameObject sprite)
     {
-        this._character = character;
         this._moveList = moves; 
         this._characterSprite = sprite;
     }
@@ -22,10 +20,7 @@ public class Character : MonoBehaviour
         return this._moveList[i];
     }
 
-    public void useMove(Vector2 targetLocation)
-    {
-         new Vector2(,)
-    }
+
 
 
 

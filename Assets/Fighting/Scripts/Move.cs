@@ -5,13 +5,14 @@ using UnityEngine.UIElements;
 
 public class Move : MonoBehaviour
 {
-    private Object _hitbox;
-    private Sprite _sprite;
-    private float _cooldown;
-    private float _manaCost;
-    private float _moveSpeed;
+    public GameObject _move;
+    public GameObject _hitbox;
+    public GameObject _sprite;
+    public float _cooldown;
+    public float _manaCost;
+    public float _moveSpeed;
 
-    public Move(Object hitbox, Sprite sprite, float cooldown, float manaCost, float moveSpeed) {
+    public Move(GameObject move,GameObject hitbox, GameObject sprite, float cooldown, float manaCost, float moveSpeed) {
         this._hitbox = hitbox;
         this._sprite = sprite;
         this._cooldown = cooldown;
@@ -19,6 +20,12 @@ public class Move : MonoBehaviour
         this._moveSpeed = moveSpeed;
     }
 
+    public void useMove(Vector2 targetLocation)
+    {
+        _move.SetActive(true);
+        Vector3.MoveTowards(this.transform.position, targetLocation,this._moveSpeed*Time.deltaTime);
+        Vector3.RotateTowards(this.transform.position,targetLocation,7f,7f);
+    }
 
     // Start is called before the first frame update
     void Start()
