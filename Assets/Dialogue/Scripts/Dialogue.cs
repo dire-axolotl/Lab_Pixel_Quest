@@ -19,7 +19,7 @@ public class Dialogue : MonoBehaviour
     public List <TextMeshProUGUI> choiceTexts;
     private void Start()
     {
-
+        currentIndex = 0;
         DialogueIntro = Resources.Load<TextAsset>("Dialogues/DialogueIntro");
         dialogue = DialogueIntro.text;
         dialogueLines = dialogue.Split(new[] { '\n' }).ToList();
@@ -56,8 +56,6 @@ public class Dialogue : MonoBehaviour
         {
             Debug.Log(option);
         }
-
-        //Collect player input 
 
         Debug.Log(dialogueOptions[currentIndex].responseLines[choiceNum]);
         if (dialogueOptions[currentIndex].optionText.Count >= 1)

@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 263118796}
   - component: {fileID: 263118795}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Choice1_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 558353565}
   - component: {fileID: 558353564}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Choice2_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1042,7 +1042,7 @@ GameObject:
   - component: {fileID: 1297236317}
   - component: {fileID: 1297236316}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Choice3_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choice 1
+  m_text: Choice 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1326,6 +1326,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 698568856}
   Buttons: {fileID: 1333933018}
+  Choice1: {fileID: 263118793}
+  Choice2: {fileID: 558353562}
+  Choice3: {fileID: 0}
+  Choice4: {fileID: 0}
   choiceTexts:
   - {fileID: 263118795}
   - {fileID: 558353564}
@@ -1403,7 +1407,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Choice 1
+  m_text: Choice 4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
