@@ -22,9 +22,13 @@ public class Move : MonoBehaviour
 
     public void useMove(Vector2 targetLocation)
     {
+        print("setActive");
         _move.SetActive(true);
-        Vector3.MoveTowards(this.transform.position, targetLocation,this._moveSpeed*Time.deltaTime);
-        Vector3.RotateTowards(this.transform.position,targetLocation,7f,7f);
+        print("worked");
+        //Vector3.MoveTowards(this.transform.position, targetLocation,this._moveSpeed*Time.deltaTime);
+        Vector3 mouseDirection = Vector3.RotateTowards(this.transform.position,targetLocation,7f,7f);
+        print(mouseDirection);
+        transform.rotation = Quaternion.LookRotation(mouseDirection.x,mouseDirection);
     }
 
     // Start is called before the first frame update
