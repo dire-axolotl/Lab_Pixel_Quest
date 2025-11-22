@@ -81,7 +81,7 @@ public class Dialogue : MonoBehaviour
             else
             {
             }
-            choiceState = !choiceState;
+            choiceState = false;
             buttonsActive = false;
             Debug.Log(choiceState);
             Debug.Log(buttonsActive);
@@ -109,7 +109,7 @@ public class Dialogue : MonoBehaviour
                 dialogueText.text = dialogueOptions[currentIndex].Text2[0];
             }
             else if (Buttons.gameObject.activeSelf == true)
-            {
+            { 
                 dialogueText.text = dialogueOptions[currentIndex].Text1[0];
                 buttonsActive = true;
             }
