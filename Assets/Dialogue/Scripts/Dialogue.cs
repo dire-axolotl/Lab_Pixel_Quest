@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using TMPro;
+using JetBrains.Annotations;
 
 public class Dialogue : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Dialogue : MonoBehaviour
     List<DialogueOption> dialogueOptions = new List<DialogueOption>();
     private int currentIndex = 0; //Conversation number
     private int choiceNum = 0;
+    private bool choiceState = false;
+    private bool buttonsActive = false;
     public TextMeshProUGUI dialogueText;
     public GameObject Buttons;
     public List <TextMeshProUGUI> choiceTexts;
@@ -32,7 +35,7 @@ public class Dialogue : MonoBehaviour
             }
             else if (line.Contains("+"))
             {
-                dialogueOptions[currentIndex].Test2.Add(line.Replace("+", "").Trim());
+                dialogueOptions[currentIndex].Text2.Add(line.Replace("+", "").Trim());
             }
             else if (line.Contains("|"))
             {
@@ -57,30 +60,67 @@ public class Dialogue : MonoBehaviour
             Debug.Log(option);
         }
 
-        Debug.Log(dialogueOptions[currentIndex].responseLines[choiceNum]);
+        UISetup();
+        
+    }
+
+    //STATES: BUTTON + PROMPT TEXT (choiceState = true), NORMAL TEXT (choiceState = false), RESPONSE TEXT (choiceState = true)
+    //HAVE TO SET CHOICE STATE TO FALSE AFTER RESPONSE IS GIVEN
+    //NEED TO FORWARD DIALOGUE AFTER RESPONSE IS GIVEN
+
+    public void Update()
+    {
+    //Press E, if buttons aren't active, goes to next dialogue set, then assumes that we are in normal text (which we are) and then makes sure buttons are inactive
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!buttonsActive)
+            {
+                currentIndex++;
+            }
+            else
+            {
+            }
+            choiceState = !choiceState;
+            buttonsActive = false;
+            Debug.Log(choiceState);
+            Debug.Log(buttonsActive);
+
+        }
+    }
+    public void buttonClicked(int optionNum)
+    {
+        Buttons.SetActive(false);
+        buttonsActive = false;
+        choiceNum = optionNum;
+        dialogueText.text = dialogueOptions[currentIndex].responseLines[optionNum];
+
+    }
+    public void UISetup()
+    {
         if (dialogueOptions[currentIndex].optionText.Count >= 1)
         {
             for (int i = 0; i < dialogueOptions[currentIndex].optionText.Count; i++)
             {
                 choiceTexts[i].text = dialogueOptions[currentIndex].optionText[i];
             }
-            dialogueText.text = dialogueOptions[currentIndex].Text1[0];
+            if (Buttons.gameObject.activeSelf == false && choiceState == false)
+            {
+                dialogueText.text = dialogueOptions[currentIndex].Text2[0];
+            }
+            else if (Buttons.gameObject.activeSelf == true)
+            {
+                dialogueText.text = dialogueOptions[currentIndex].Text1[0];
+                buttonsActive = true;
+            }
         }
-    }
-
-    public void buttonClicked(int optionNum)
-    {
-        Buttons.SetActive(false);
-        choiceNum = optionNum;
-        dialogueText.text = dialogueOptions[currentIndex].responseLines[optionNum];
-
     }
 }
 
 public class DialogueOption
 {
     public List<string> Text1 = new List<string>();
-    public List<string> Test2 = new List<string>();
+    public List<string> Text2 = new List<string>();
     public List<string> optionText = new List<string>();
     public List<string> responseLines = new List<string>();
 
