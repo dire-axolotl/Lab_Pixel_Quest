@@ -527,7 +527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6322789303364573857, guid: 0d38aac1e803a1540b7ce8638c260c75, type: 3}
       propertyPath: _key
-      value: 323
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 6322789303364573857, guid: 0d38aac1e803a1540b7ce8638c260c75, type: 3}
       propertyPath: _cooldown
@@ -535,7 +535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6322789303364573857, guid: 0d38aac1e803a1540b7ce8638c260c75, type: 3}
       propertyPath: _moveSpeed
-      value: 6
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322789303364573857, guid: 0d38aac1e803a1540b7ce8638c260c75, type: 3}
+      propertyPath: bulletLife
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
