@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,47 +6,99 @@ using UnityEngine.UIElements;
 
 public class Move : MonoBehaviour
 {
-    public GameObject _move;
-    public GameObject _hitbox;
-    public GameObject _sprite;
+    // world va;ies
+    private Camera _camera;    //Camera Game Object 
+    private Vector3 _mousePos; //Current Mouse Position  
+    //move specifics
+    private Rigidbody2D _rigidbody2D;
+    //private
+    private GameObject _hitbox; //interaction implemented in charachter class
+    private GameObject _sprite; // visual
     public float _cooldown;
     public float _manaCost;
     public float _moveSpeed;
+    public float bulletLife;
+    public KeyCode _key;
+// determines if move can hit(if its owned by entity)
+    public bool Owned;
+    // canshoot
 
-    public Move(GameObject move,GameObject hitbox, GameObject sprite, float cooldown, float manaCost, float moveSpeed) {
-        this._hitbox = hitbox;
-        this._sprite = sprite;
+    private bool canShoot = true;
+    private float _currentTime;
+
+    public void canShootFunc()
+    {
+        if (!canShoot)
+        {
+            _currentTime -= Time.deltaTime;
+
+            if (_currentTime < 0)
+            {
+                canShoot = true;
+                _currentTime = _cooldown;
+            }
+        }
+    }
+
+    public bool getShoot()
+    {
+        return canShoot;
+    }
+
+    public void setShoot()
+    {
+        canShoot = false;
+    }
+
+
+    public Move(GameObject move, float cooldown, float manaCost, float moveSpeed, float bulletLife, Boolean owned) {
+        this._hitbox =  move.transform.GetChild(0).gameObject;
+        this._sprite = move.transform.GetChild(1).gameObject;
         this._cooldown = cooldown;
         this._manaCost = manaCost;
         this._moveSpeed = moveSpeed;
+        this.bulletLife = bulletLife;
+        this.Owned = owned;
     }
 
-    public void useMove(Vector3 targetLocation)
-    {
-        _move.SetActive(true);
-
-        Vector3 pos = targetLocation - transform.position;
-
-        float rotZ = Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
-        //Vector3.MoveTowards(this.transform.position, targetLocation,this._moveSpeed*Time.deltaTime);
-        //Vector3 mouseDirection = Vector3.RotateTowards(this.transform.position,targetLocation,7f,7f);
-        //print(mouseDirection);
-        //transform.rotation = Quaternion.LookRotation(mouseDirection);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _currentTime = _cooldown;
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        PlayerBullet();
+        StartCoroutine(Death());
     }
 
-    
 
     // Update is called once per frame
     void Update()
     {
-        
+        canShootFunc();
     }
+
+    private void PlayerBullet()
+    {
+        _camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        RotationUpdate(_mousePos);
+    }
+
+    private void RotationUpdate(Vector3 pos1)
+    {
+        var pos2 = transform.position;
+        var dir = pos1 - pos2;
+        var rotation = pos2 - pos1;
+        _rigidbody2D.velocity = new Vector2(dir.x, dir.y).normalized * _moveSpeed;
+        var rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(bulletLife);
+        Destroy(gameObject);
+    }
+
 }
