@@ -1,21 +1,21 @@
-+this is line1
-~you now have an option
-|option1
-|option2
-|option3
-|option4
-/response1
-/response2
-/response3
-/response4
++Good morning
+~How are you today?
+|Happy
+|Sad
+|Angry
+|Tired
+/I'm so happy you're happy!
+/Aww, can I make you feel better?
+/We all get upset sometimes
+/Me too
 (
-+this is line1
-~you now have an option
-|option1
-|option2
-|option3
-|option4
-/response1
-/response2
-/response3
-/response4
++It's our first day of school!
+~Are you ready?
+|Yes
+|No
+|I'm nervous
+|*Dies*
+/Great, let's go
+/Me neither
+/Everyone's a little nervous
+/*Also dies*
