@@ -26,28 +26,31 @@ public class Move : MonoBehaviour
     private bool canShoot = true;
     private float _currentTime;
 
-    public void canShootFunc()
-    {
-        if (!canShoot)
-        {
-            _currentTime -= Time.deltaTime;
+   
 
-            if (_currentTime < 0)
-            {
-                canShoot = true;
-                _currentTime = _cooldown;
-            }
-        }
-    }
 
     public bool getShoot()
     {
         return canShoot;
     }
-
-    public void setShoot()
+    public float getTime()
     {
-        canShoot = false;
+        return _currentTime;
+    }
+    public void setShoot( bool b)
+    {
+        canShoot = b;
+    }
+
+    public void setTime(bool a)
+    {
+        if (a)
+        {
+            _currentTime -= Time.deltaTime;
+        } else
+        {
+            _currentTime = _cooldown;
+        }
     }
 
 
@@ -75,7 +78,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canShootFunc();
+       
     }
 
     private void PlayerBullet()

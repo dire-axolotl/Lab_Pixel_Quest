@@ -13,7 +13,8 @@ public class Character : MonoBehaviour
 
     public Transform bulletTrash;
     public Transform bulletSpawn;
-
+    private bool canShoot = true;
+    private float _currentTime;
 
 
     public Character(Move[] moves, GameObject sprite)
@@ -42,17 +43,33 @@ public class Character : MonoBehaviour
             GameObject bullet1 = Instantiate(getMove(i).gameObject, bulletSpawn.position, Quaternion.identity);
             bullet1.SetActive(true);
             bullet1.transform.SetParent(bulletTrash);
-            getMove(i).setShoot();
+            getMove(i).setShoot(false);
         }
     }
 
-
-        // Update is called once per frame
-        void Update()
+    public void canShootFunc(int i)
     {
+        if (!getMove(i).getShoot())
+        {
+            getMove(i).setTime(true);
+
+            if (getMove(i).getTime() < 0)
+            {
+                getMove(i).setShoot(true);
+                getMove(i).setTime(false);
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        //print(getMove(0).getShoot());
         for (int i = 0; i < _moveList.Length; i++) {
+            canShootFunc(i);
             shootFunc(i, getMove(i)._key);
-            print("hi");
+            //print("hi");
          }
         //if(Input.GetKeyDown(kryvofr));
     }
