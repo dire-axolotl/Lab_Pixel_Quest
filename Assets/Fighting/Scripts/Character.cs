@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class Character : MonoBehaviour
     public Move[] _moveList;
     public GameObject _characterSprite;
     // Start is called before the first frame update
+
+    public float playerSpeed;
+    private Rigidbody _rigidbody;
 
     public Transform bulletTrash;
     public Transform bulletSpawn;
@@ -61,6 +65,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void charachterMove()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +80,7 @@ public class Character : MonoBehaviour
             shootFunc(i, getMove(i)._key);
             //print("hi");
          }
+
         //if(Input.GetKeyDown(kryvofr));
     }
 }

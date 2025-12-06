@@ -98,6 +98,8 @@ public class Move : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 
+
+
     private IEnumerator Death()
     {
         yield return new WaitForSeconds(bulletLife);
