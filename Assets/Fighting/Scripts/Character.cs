@@ -6,13 +6,16 @@ using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 {
     public Move[] _moveList;
     public GameObject _characterSprite;
-    // Start is called before the first frame update
 
+    public bool boss;
+    // Start is called before the first frame update
+    public float health;
     public float playerSpeed;
     private float _xVelocity = 0f;
     private float _yVelocity = 0f;
@@ -40,7 +43,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         _rigidbody = this.GetComponent<Rigidbody2D>();
-        
+
     }
 
     public void shootFunc(int i, KeyCode k)
@@ -76,8 +79,25 @@ public class Character : MonoBehaviour
         if (collision.tag == shotBy)
         {
             Destroy(collision.transform.parent.gameObject);
+            health -= 1;
         }
     }
+
+    public void fireShoot()
+    {
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            for (int i = 0; i < 250; i++)
+            {
+                GameObject bullet1 = Instantiate(getMove(0).gameObject, bulletSpawn.position, Quaternion.identity);
+                bullet1.SetActive(true);
+                bullet1.transform.position += new Vector3(UnityEngine.Random.Range(-2f, 2f),UnityEngine.Random.Range(-2f, 2f), 0);
+                bullet1.GetComponent<Rigidbody2D>().velocity = bullet1.transform.forward * 3000;
+            }
+        }
+    }
+
 
     public void charachterMove()
     {
@@ -89,11 +109,22 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (health <= 0)
+        {
+            string thisLevel = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(thisLevel);
+        }
         //print(getMove(0).getShoot());
         for (int i = 0; i < _moveList.Length; i++) {
             canShootFunc(i);
-            shootFunc(i, getMove(i)._key);
+            if (boss)
+            {
+                fireShoot();
+            }
+            else
+            {
+                shootFunc(i, getMove(i)._key);
+            }
             //print("hi");
          }
         charachterMove();

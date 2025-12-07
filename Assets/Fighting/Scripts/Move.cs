@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class Move : MonoBehaviour
 {
+
     // world va;ies
     private Camera _camera;    //Camera Game Object 
     private Vector3 _mousePos; //Current Mouse Position  
@@ -15,7 +16,6 @@ public class Move : MonoBehaviour
     private GameObject _hitbox; //interaction implemented in charachter class
     private GameObject _sprite; // visual
     public float _cooldown;
-    public float _manaCost;
     public float _moveSpeed;
     public float bulletLife;
     public KeyCode _key;
@@ -57,7 +57,6 @@ public class Move : MonoBehaviour
         this._hitbox =  move.transform.GetChild(0).gameObject;
         this._sprite = move.transform.GetChild(1).gameObject;
         this._cooldown = cooldown;
-        this._manaCost = manaCost;
         this._moveSpeed = moveSpeed;
         this.bulletLife = bulletLife;
     }
@@ -77,7 +76,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 
     private void PlayerBullet()
