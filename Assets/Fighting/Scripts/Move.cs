@@ -19,8 +19,7 @@ public class Move : MonoBehaviour
     public float _moveSpeed;
     public float bulletLife;
     public KeyCode _key;
-// determines if move can hit(if its owned by entity)
-    public bool Owned;
+    // determines if move can hit(if its owned by entity)
     // canshoot
 
     private bool canShoot = true;
@@ -61,7 +60,6 @@ public class Move : MonoBehaviour
         this._manaCost = manaCost;
         this._moveSpeed = moveSpeed;
         this.bulletLife = bulletLife;
-        this.Owned = owned;
     }
 
 
@@ -72,6 +70,7 @@ public class Move : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         PlayerBullet();
         StartCoroutine(Death());
+
     }
 
 
