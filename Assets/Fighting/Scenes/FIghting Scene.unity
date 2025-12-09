@@ -563,7 +563,7 @@ MonoBehaviour:
   - {fileID: 598349973}
   _characterSprite: {fileID: 0}
   health: 100
-  playerSpeed: 2
+  playerSpeed: 0.001
   bulletTrash: {fileID: 771953877}
   bulletSpawn: {fileID: 566663002}
   shotBy: Bullet
