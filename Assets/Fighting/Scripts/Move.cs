@@ -18,6 +18,7 @@ public class Move : MonoBehaviour
     public float _cooldown;
     public float _moveSpeed;
     public float bulletLife;
+    public int damage;
     public KeyCode _key;
     // determines if move can hit(if its owned by entity)
     // canshoot

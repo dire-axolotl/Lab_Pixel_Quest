@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,6 @@ public class Character : MonoBehaviour
     public Move[] _moveList;
     public GameObject _characterSprite;
 
-    public bool boss;
     // Start is called before the first frame update
     public float health;
     public float playerSpeed;
@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
 
     public Transform bulletTrash;
     public Transform bulletSpawn;
-    private bool canShoot = true;
     private float _currentTime;
     public String shotBy;
 
@@ -75,59 +74,41 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.tag);
+        //print(collision.tag);
         if (collision.tag == shotBy)
         {
             Destroy(collision.transform.parent.gameObject);
-            health -= 1;
+            health -= collision.transform.GetComponentInParent<Move>().damage;
         }
     }
 
-    public void fireShoot()
+    public void fireShoot(int bulletAmount)
     {
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            for (int i = 0; i < 250; i++)
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+            for (int i = 0; i < bulletAmount; i++)
             {
                 GameObject bullet1 = Instantiate(getMove(0).gameObject, bulletSpawn.position, Quaternion.identity);
                 bullet1.SetActive(true);
                 bullet1.transform.position += new Vector3(UnityEngine.Random.Range(-2f, 2f),UnityEngine.Random.Range(-2f, 2f), 0);
                 bullet1.GetComponent<Rigidbody2D>().velocity = bullet1.transform.forward * 3000;
             }
-        }
+        print(this.gameObject + " " +health);
+        //}
     }
 
 
     public void charachterMove()
     {
-        _xVelocity = Input.GetAxis(HW3Structs.Input.horizontal);
-        _yVelocity = Input.GetAxis(HW3Structs.Input.vertical);
+        _xVelocity = Input.GetAxis("Horizontal");
+        _yVelocity = Input.GetAxis("Vertical");
         _rigidbody.velocity = new Vector2(_xVelocity, _yVelocity) * playerSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            string thisLevel = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(thisLevel);
-        }
         //print(getMove(0).getShoot());
-        for (int i = 0; i < _moveList.Length; i++) {
-            canShootFunc(i);
-            if (boss)
-            {
-                fireShoot();
-            }
-            else
-            {
-                shootFunc(i, getMove(i)._key);
-            }
-            //print("hi");
-         }
-        charachterMove();
-        //if(Input.GetKeyDown(kryvofr));
     }
 }
