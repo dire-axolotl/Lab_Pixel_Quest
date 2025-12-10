@@ -22,12 +22,16 @@ public class Move : MonoBehaviour
     public KeyCode _key;
     // determines if move can hit(if its owned by entity)
     // canshoot
-
+    private Vector3 target;
     private bool canShoot = true;
     private float _currentTime;
+    public bool player;
 
    
-
+    public void setTarget(Vector3 target)
+    {
+        this.target = target;
+    }
 
     public bool getShoot()
     {
@@ -84,7 +88,13 @@ public class Move : MonoBehaviour
     {
         _camera = GameObject.Find("Main Camera").GetComponent<Camera>();
         _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        RotationUpdate(_mousePos);
+        if (player)
+        {
+            RotationUpdate(_mousePos);
+        } else
+        {
+            RotationUpdate(target);
+        }
     }
 
     private void RotationUpdate(Vector3 pos1)
