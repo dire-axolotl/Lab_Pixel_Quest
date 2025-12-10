@@ -19,6 +19,7 @@ public class IkuAttack : MonoBehaviour
     void Update()
     {
         Iku.getMove(0).setTarget(Rin.transform.position);
+        print(Iku.getMove(0).getTarget());
         Iku.canShootFunc(0);
         if(Iku.health > 35 && Iku.getMove(0).getShoot())
         {

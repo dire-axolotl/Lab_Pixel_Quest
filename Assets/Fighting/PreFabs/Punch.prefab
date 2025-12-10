@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 2
-  _manaCost: 0
-  _moveSpeed: 2
+  _moveSpeed: 1
   bulletLife: 2
+  damage: 0
   _key: 101
-  Owned: 0
+  player: 0
 --- !u!50 &4202188563483455704
 Rigidbody2D:
   serializedVersion: 4
