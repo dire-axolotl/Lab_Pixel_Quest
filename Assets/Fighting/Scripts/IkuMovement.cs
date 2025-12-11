@@ -90,6 +90,10 @@ public class IkuMovement : MonoBehaviour
             {
                 movementPhase1();
             }
+            if (Phase.Equals("two"))
+            {
+                movementPhase1();
+            }
         }
 
         //print(Phase);

@@ -362,8 +362,8 @@ MonoBehaviour:
   _moveList:
   - {fileID: 233242879}
   _characterSprite: {fileID: 1377626436}
-  health: 1
-  playerSpeed: 2
+  health: 1000
+  playerSpeed: 4
   bulletTrash: {fileID: 771953877}
   bulletSpawn: {fileID: 1044171225}
   shotBy: Enemy
@@ -962,7 +962,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

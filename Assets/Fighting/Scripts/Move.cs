@@ -27,6 +27,10 @@ public class Move : MonoBehaviour
     private float _currentTime;
     public bool player;
 
+    public void setCooldown(float cooldown)
+    {
+        this._cooldown = cooldown;
+    }
    
     public void setTarget(Vector3 target)
     {

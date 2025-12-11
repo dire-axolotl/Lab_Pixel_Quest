@@ -82,21 +82,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void fireShoot(int bulletAmount)
-    {
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-            for (int i = 0; i < bulletAmount; i++)
-            {
-                GameObject bullet1 = Instantiate(getMove(0).gameObject, bulletSpawn.position, Quaternion.identity);
-                bullet1.SetActive(true);
-                bullet1.transform.position += new Vector3(UnityEngine.Random.Range(-2f, 2f),UnityEngine.Random.Range(-2f, 2f), 0);
-                bullet1.GetComponent<Rigidbody2D>().velocity = bullet1.transform.forward * 3000;
-            }
-        print(this.gameObject + " " +health);
-        //}
-    }
 
 
     public void charachterMove()
