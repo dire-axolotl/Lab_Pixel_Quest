@@ -77,7 +77,7 @@ public class IkuMovement : MonoBehaviour
         {
             counter++;
             currentTime = Timer;
-            print(xRandom + "x ran");
+            //print(xRandom + "x ran");
             xRandom = Random.Range(minX, maxX);
             yRandom = Random.Range(minY, maxY);
             if(counter >= 3)
