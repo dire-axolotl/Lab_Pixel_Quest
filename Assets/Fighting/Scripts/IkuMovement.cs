@@ -77,7 +77,7 @@ public class IkuMovement : MonoBehaviour
         {
             counter++;
             currentTime = Timer;
-            print(xRandom + "x ran");
+            //print(xRandom + "x ran");
             xRandom = Random.Range(minX, maxX);
             yRandom = Random.Range(minY, maxY);
             if(counter >= 3)
@@ -87,6 +87,10 @@ public class IkuMovement : MonoBehaviour
                 yRandom = -yDif;
             }
             if (Phase.Equals("one"))
+            {
+                movementPhase1();
+            }
+            if (Phase.Equals("two"))
             {
                 movementPhase1();
             }

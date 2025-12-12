@@ -27,10 +27,20 @@ public class Move : MonoBehaviour
     private float _currentTime;
     public bool player;
 
+    public void setCooldown(float cooldown)
+    {
+        this._cooldown = cooldown;
+    }
    
     public void setTarget(Vector3 target)
     {
+        print(target + "target input");
         this.target = target;
+    }
+
+    public Vector3 getTarget()
+    {
+        return target;
     }
 
     public bool getShoot()
@@ -93,7 +103,8 @@ public class Move : MonoBehaviour
             RotationUpdate(_mousePos);
         } else
         {
-            RotationUpdate(target);
+            print(getTarget() + "this target");
+            BossRotation(this.target);
         }
     }
 
@@ -105,6 +116,17 @@ public class Move : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(dir.x, dir.y).normalized * _moveSpeed;
         var rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+    }
+
+    private void BossRotation(Vector3 pos1)
+    {
+        var pos2 = transform.position;
+        var dir = pos1 - pos2;
+        //print(dir);
+        var rotation = pos2 - pos1;
+        _rigidbody2D.velocity = new Vector2(dir.x, dir.y).normalized * _moveSpeed;
+        var rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rot+90);
     }
 
 
