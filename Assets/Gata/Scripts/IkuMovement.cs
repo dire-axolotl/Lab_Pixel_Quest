@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IkuMovement : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class IkuMovement : MonoBehaviour
     private float xRandom;
     private float yRandom;
     private int counter;
+    public string nextLevel = "End";
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +96,10 @@ public class IkuMovement : MonoBehaviour
             {
                 movementPhase1();
             }
+        }
+        if(Iku.health <= 0)
+        {
+            SceneManager.LoadScene(nextLevel);
         }
 
         //print(Phase);

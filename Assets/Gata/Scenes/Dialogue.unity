@@ -1406,6 +1406,7 @@ MonoBehaviour:
   - {fileID: 558353564}
   - {fileID: 1297236316}
   - {fileID: 1790553148}
+  nextLevel: fight
 --- !u!4 &1758543737
 Transform:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI dialogueText;
     public GameObject Buttons;
     public List <TextMeshProUGUI> choiceTexts;
+    public string nextLevel = "fight";
     private void Start()
     {
         currentIndex = 0;
@@ -52,13 +54,14 @@ public class Dialogue : MonoBehaviour
             {
                 currentIndex++;
             }
+
         }
 
         currentIndex = 0; //Initialize index
 
         foreach (string option in dialogueOptions[currentIndex].optionText)
         {
-            Debug.Log(option);
+            //Debug.Log(option);
         }
 
         UISetup(); //Initialize UI and buttons
@@ -87,8 +90,8 @@ public class Dialogue : MonoBehaviour
             }
 
             UISetup();
-            Debug.Log(choiceState);
-            Debug.Log(buttonsActive);
+            //Debug.Log(choiceState);
+            //Debug.Log(buttonsActive);
 
         }
     }
@@ -98,6 +101,11 @@ public class Dialogue : MonoBehaviour
         buttonsActive = false;
         choiceNum = optionNum;
         dialogueText.text = dialogueOptions[currentIndex].responseLines[optionNum];
+        print(dialogueText.text);
+        if(dialogueText.text.Contains("Yay! Let"))
+        {
+            SceneManager.LoadScene(nextLevel);
+        }
     }
     public void UISetup()
     {
