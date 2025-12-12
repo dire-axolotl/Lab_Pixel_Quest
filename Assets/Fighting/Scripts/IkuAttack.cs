@@ -104,11 +104,11 @@ public class IkuAttack : MonoBehaviour
             bulletTarget = vectorRot(Rin.transform.position);
             bulletMaker(bulletTarget);      
         }
-        else if(Iku.health <= 35 && currentTime <= .05)
+        else if(Iku.health <= 35 && currentTime <= .02)
         {
-            Iku.getMove(0)._moveSpeed = 15;
+            Iku.getMove(0)._moveSpeed = 8;
             print(Iku.getMove(0)._cooldown + " cooldown");
-            fireShoot(100, phase2Attack);
+            fireShoot(10, phase2Attack);
             
         }
     }
